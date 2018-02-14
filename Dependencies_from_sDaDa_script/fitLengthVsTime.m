@@ -1,3 +1,32 @@
+% Copyright (C) 2017 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE, Switzerland,
+% Laboratory of Experimental Biophysics
+% 
+% Authors: Anna Archetti and Aster Vanhecke 
+% 
+% Contact:
+% e-mail:
+% anna.archetti@epfl.ch
+% aster.vanhecke@epfl.ch
+% 
+% paper mail:
+% EPFL SB IPHYS LEB 
+% BSP 428 (Cubotron UNIL) 
+% Rte de la Sorge 
+% CH-1015 Lausanne
+% 
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+% 
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+% 
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 %-------------------------------------------------------------------------%
 %                main function: fitLengthVsTime                           %
 %-------------------------------------------------------------------------%
@@ -44,36 +73,8 @@ function lOut = growthModel(p, t)
 kL = p(1);
 l0 = p(2);
 
-
 %lOut = l0.*exp(-kL.*t) + A;
 lOut = l0.*exp(kL.*t);
 
-
-%fic
-
-%3 conditions
-%1. (t<tc), w=wMax
-%2. (tc<t<tg), w=linear constriction
-%3. (t>tg) w = 0;
-
-% wOut = 0.*t;
-% 
-% %1. (t<tc), w=wMax
-% isPreDiv = t<0;
-% wOut(isPreDiv) = wMax;
-% %wOut(isPreDiv)=1;
-% 
-% %2. (tc<t<tg),w=linear constriction
-% %passes through points
-% %(tc,wMax), (tg,0);
-% isDiv = (t>=tc & t<tg);
-% tDiv = t(isDiv);
-% wOut(isDiv) = wMax.*sqrt( 1 - 1/(tg-tc).*(tDiv-tc) );
-% 
-% 
-% 
-% %3. (t>tg) w = 0;
-% isPostDiv= (t>=tg);
-% wOut(isPostDiv)=0;
 end
 

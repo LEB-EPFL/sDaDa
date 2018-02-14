@@ -1,3 +1,31 @@
+% Copyright (C) 2017 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE, Switzerland,
+% Laboratory of Experimental Biophysics
+% 
+% Authors: Aster Vanhecke 
+% 
+% Contact:
+% e-mail:
+% aster.vanhecke@epfl.ch
+% 
+% paper mail:
+% EPFL SB IPHYS LEB 
+% BSP 428 (Cubotron UNIL) 
+% Rte de la Sorge 
+% CH-1015 Lausanne
+% 
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+% 
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+% 
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 function cellList = measureZ(imgZ, cellList, ~, roiCor, cellIdx, frIdx, PathNameResults,FtsZFig)
 % cellList = measureZ(imgZ, cellList, ~, roiCor, cellIdx, frIdx, PathNameResults,FtsZFig)
 % INPUT:
@@ -21,8 +49,6 @@ function cellList = measureZ(imgZ, cellList, ~, roiCor, cellIdx, frIdx, PathName
 % measured. When there is a peak around midcell that is significantly
 % bigger than all other peaks, the divisome will be considered as
 % "assembled", reflected in the cellList.Zassembled value.
-% 
-% Author: Aster Vanhecke
 
 %% Grab input and intialize parameters
 mesh=cellList.mesh;
