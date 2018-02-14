@@ -46,9 +46,9 @@ PathNameResults = [PathName 'Results\' FileBaseName];
 
 %% Do the segmentation of the SIM data and measure some quantities(waist diameter, contour, etc)
 if ~exist('FileNameZ','var')
-    [imageStack,  num_frames, cellInfo, divededVarEachFrm] = SIManalysis(FileName, PathName, PathNameResults); % Single color
+    [imageStack,  num_frames, cellInfo, divededVarEachFrm] = measureShapeDynamics(FileName, PathName, PathNameResults); % Single color
 else
-    [imageStack,  num_frames, cellInfo, divededVarEachFrm] = SIManalysis(FileName, PathName, PathNameResults, FileNameZ); %Dual color
+    [imageStack,  num_frames, cellInfo, divededVarEachFrm] = measureShapeDynamics(FileName, PathName, PathNameResults, FileNameZ); %Dual color
 end
 
 %% Correct cellInfo and divededVarEachFrm for cells that were incorrectly categorized as not divided.
@@ -60,7 +60,7 @@ save([PathNameResults '\cellDivVarWithC0.mat'], 'divededVarEachFrm')
 
 %% Plot diameter vs time, length vs time etc and do the fit
 diamThresh=90; smthThresh=0.92;
-[twMatrix, tlMatrix, Tvar, Lvar, BIC, p1C0, meanR, twZMat, tZMat, fitResultF, fitResultX, fitResultFz, fitResultXz, tDMatrix] = pltSIM_diameter(cellInfo, tInt, T0, pixSize, divededVarEachFrm,PathNameResults, diamThresh,smthThresh);
+[twMatrix, tlMatrix, Tvar, Lvar, BIC, p1C0, meanR, twZMat, tZMat, fitResultF, fitResultX, fitResultFz, fitResultXz, tDMatrix] = analyzeShapeDynamics(cellInfo, tInt, T0, pixSize, divededVarEachFrm,PathNameResults, diamThresh,smthThresh);
 ElMat=getElMat(tlMatrix);
 
 %% Save variable (change this)

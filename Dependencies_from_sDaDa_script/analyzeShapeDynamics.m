@@ -95,8 +95,8 @@ catch
     DualC=false;
 end
 
-%% First, let's recite some Shakespeare
-ToPlotOrNotToPlot % That's the question! % Toggles which plots to plot etc.
+%% Toggles which plots to plot etc.
+togglePlots
 
 %% init Curvature msrmnt figure
 if plotCurv
