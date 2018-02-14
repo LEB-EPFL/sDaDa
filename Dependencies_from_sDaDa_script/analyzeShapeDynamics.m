@@ -1,5 +1,5 @@
-function [twMatrix, tlMatrix, Tvar, Lvar, BIC, p1C0, meanR, twZMat, tZMat, TZvar, LZvar, fitResultF, fitResultX, fitResultFz, fitResultXz, tDMatrix, alphas_a, tg_frame] = pltSIM_diameter(cellInfo, tInt, T0, pixSize, divededVarEachFrm, PathNameResults, diamThresh, smthThresh)
-% Function to calculate, plot, fit data from the SIM analysis
+function [twMatrix, tlMatrix, Tvar, Lvar, BIC, p1C0, meanR, twZMat, tZMat, TZvar, LZvar, fitResultF, fitResultX, fitResultFz, fitResultXz, tDMatrix, alphas_a, tg_frame] = analyzeShapeDynamics(cellInfo, tInt, T0, pixSize, divededVarEachFrm, PathNameResults, diamThresh, smthThresh)
+% Function to calculate, plot, fit data from measureShapeDynamics
 % Calculates:
 % assymetry/constriction site position
 % curvature of the cell backbone
@@ -7,7 +7,7 @@ function [twMatrix, tlMatrix, Tvar, Lvar, BIC, p1C0, meanR, twZMat, tZMat, TZvar
 %
 % -----
 % Input:
-% cellInfo: structure with data from SIManalysis (different cells and
+% cellInfo: structure with data from measureShapeDynamics (different cells and
 % frames)
 %
 % tInt: interval time between successive frames in minutes
@@ -16,7 +16,7 @@ function [twMatrix, tlMatrix, Tvar, Lvar, BIC, p1C0, meanR, twZMat, tZMat, TZvar
 %
 % pixSize: pixel size in nm (30nm/px for N-SIM)
 %
-% divededVarEachFrm: matrix with info whether cells are divided from SIManalysis
+% divededVarEachFrm: matrix with info whether cells are divided from measureShapeDynamics
 %
 % PathNameResults: Path where to store results, string example 'C:\folder\folder'
 %
@@ -95,8 +95,8 @@ catch
     DualC=false;
 end
 
-%% First, let's recite some Shakespeare
-ToPlotOrNotToPlot % That's the question! % Toggles which plots to plot etc.
+%% Toggles which plots to plot etc.
+togglePlots
 
 %% init Curvature msrmnt figure
 if plotCurv

@@ -1,9 +1,9 @@
-% script to run pltSIM_diameter overnight :)
-% remember to configure ToPlotOrNotToPlot
+% script to run analyzeShapeDynamics overnight :)
+% remember to configure togglePlots
 % does:
 % load cellInfo and celldivededvar
 % set parameters specify! T0 etc
-% run pltSIMdiameter
+% run analyzeShapeDynamics
 % save output
 % close figures
 % try SAV stuff
@@ -69,8 +69,8 @@ for analysisCycleId=5 % play with this
     cellInfo = rerunGMAFS(cellInfo,PathNameResults);
     save([PathNameResults '\cellInfoWithC0.mat'], 'cellInfo');
     
-    %% redo pltSIM_diameter since diameter threshold onset might have changed
-    [twMatrix, tlMatrix, Tvar, Lvar, BIC, p1C0, meanR, twZMat, tZMat, TZvar, LZvar, fitResultF, fitResultX, fitResultFz, fitResultXz] = pltSIM_diameter(cellInfo, tInt, T0, pixSize, divededVarEachFrm,PathNameResults, 90);
+    %% redo analyzeShapeDynamics since diameter threshold onset might have changed
+    [twMatrix, tlMatrix, Tvar, Lvar, BIC, p1C0, meanR, twZMat, tZMat, TZvar, LZvar, fitResultF, fitResultX, fitResultFz, fitResultXz] = analyzeShapeDynamics(cellInfo, tInt, T0, pixSize, divededVarEachFrm,PathNameResults, 90);
     
     %% Save variable (change this)
     save([PathNameResults '\twMatrix.mat'], 'twMatrix');

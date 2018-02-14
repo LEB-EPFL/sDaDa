@@ -7,19 +7,19 @@
 % - cellInfo: a cell cointaining all the info af all the bacteria at each
 %             frame
 % - twMatrix: the matrix with the time and the waist diameter for each
-%             bacteria and frame (see function pltSIM_diameter.m)
+%             bacteria and frame (see function analyzeShapeDynamics.m)
 %                   %       cell1  cell2 ... celln
 %                     fr1   t1 w1  t2 w2 ... tn wn
 %                     fr2
 % - tlMatrix: the matrix with the time and the length for each
-%             bacteria and frame (see function pltSIM_diameter.m)
+%             bacteria and frame (see function analyzeShapeDynamics.m)
 %                   %       cell1  cell2 ... celln
 %                     fr1   t1 l1  t2 l2 ... tn ln
 %                     fr2
 % - Tvar: Tc, Tg from the fitting from both feingold and 2D model (see
-%         function pltSIM_diameter.m)  Tvar = [Tc' Tg' TcF' TgF'];
+%         function analyzeShapeDynamics.m)  Tvar = [Tc' Tg' TcF' TgF'];
 % - Lvar: Lc, Lg from the fitting from both feingold and 2D mode (see
-%         function pltSIM_diameter.m)  Lvar = [Lc' Lg' LcF' LgF'];
+%         function analyzeShapeDynamics.m)  Lvar = [Lc' Lg' LcF' LgF'];
 
 %%
 tic
@@ -27,7 +27,7 @@ tic
 tInt = 5; % Time between consecutive frames [min]
 T0 = 30; % Starting time with respect to synchrony [min]
 pixSize = 30; % Pixel size [nm]
-% Use this line to manually set parameters and resultsfolder for rerunning pltSIM_diameter
+% Use this line to manually set parameters and resultsfolder for rerunning analyzeShapeDynamics
 %tInt=5;T0=22;pixSize=30;PathNameResults='\\Data\SIM data\Analysis\170307_ML2159_label_10\Results\ExperimentName'; 
 
 %% File name and path
@@ -46,9 +46,9 @@ PathNameResults = [PathName 'Results\' FileBaseName];
 
 %% Do the segmentation of the SIM data and measure some quantities(waist diameter, contour, etc)
 if ~exist('FileNameZ','var')
-    [imageStack,  num_frames, cellInfo, divededVarEachFrm] = SIManalysis(FileName, PathName, PathNameResults); % Single color
+    [imageStack,  num_frames, cellInfo, divededVarEachFrm] = measureShapeDynamics(FileName, PathName, PathNameResults); % Single color
 else
-    [imageStack,  num_frames, cellInfo, divededVarEachFrm] = SIManalysis(FileName, PathName, PathNameResults, FileNameZ); %Dual color
+    [imageStack,  num_frames, cellInfo, divededVarEachFrm] = measureShapeDynamics(FileName, PathName, PathNameResults, FileNameZ); %Dual color
 end
 
 %% Correct cellInfo and divededVarEachFrm for cells that were incorrectly categorized as not divided.
@@ -60,7 +60,7 @@ save([PathNameResults '\cellDivVarWithC0.mat'], 'divededVarEachFrm')
 
 %% Plot diameter vs time, length vs time etc and do the fit
 diamThresh=90; smthThresh=0.92;
-[twMatrix, tlMatrix, Tvar, Lvar, BIC, p1C0, meanR, twZMat, tZMat, fitResultF, fitResultX, fitResultFz, fitResultXz, tDMatrix] = pltSIM_diameter(cellInfo, tInt, T0, pixSize, divededVarEachFrm,PathNameResults, diamThresh,smthThresh);
+[twMatrix, tlMatrix, Tvar, Lvar, BIC, p1C0, meanR, twZMat, tZMat, fitResultF, fitResultX, fitResultFz, fitResultXz, tDMatrix] = analyzeShapeDynamics(cellInfo, tInt, T0, pixSize, divededVarEachFrm,PathNameResults, diamThresh,smthThresh);
 ElMat=getElMat(tlMatrix);
 
 %% Save variable (change this)

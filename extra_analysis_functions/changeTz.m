@@ -2,7 +2,7 @@ function cellInfo=changeTz(cellInfo,Tzs)
 % Function to tell cellInfo when the FtsZ/FtsW is assembled/arrived. Input
 % is cellInfo and Tzs, a vector containing the Tz (arrival/assembly FRAME)
 % for each cell in order of cell number. The function changes the field
-% 'Zassembled', which can be used by pltSIM_diameter for constraining Tc in
+% 'Zassembled', which can be used by analyzeShapeDynamics for constraining Tc in
 % the fits.
 % Author: Aster Vanhecke
 

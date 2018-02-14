@@ -1,9 +1,9 @@
 %-------------------------------------------------------------------------%
-%-            THIS IS THE MAIN FUNCTION: 'SIManalysis'                   -%
+%-            THIS IS THE MAIN FUNCTION: 'measureShapeDynamics'          -%
 %-------------------------------------------------------------------------%
 %
 % This function analyses SIM dataset for doing edge detection..
-% format:[StackOut, maskStackOut, objectsOut] = SIManalysis(FileName, PathName, PathNameResults, FileNameZ)
+% format:[StackOut, maskStackOut, objectsOut] = measureShapeDynamics(FileName, PathName, PathNameResults, FileNameZ)
 % INPUT:
 % - FileName: file name of image stack
 % - PathName: path for the image stack
@@ -19,7 +19,7 @@
 % Authors: Aster Vanhecke and Anna Archetti
 %--------------------------------------------------------------------------
 
-function  [imageStack,  num_frames, cellInfo, divededVarEachFrm] = SIManalysis(varargin)
+function  [imageStack,  num_frames, cellInfo, divededVarEachFrm] = measureShapeDynamics(varargin)
 narginchk(3,4);
 FileName=varargin{1,1};
 PathName=varargin{1,2};
