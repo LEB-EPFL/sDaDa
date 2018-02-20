@@ -74,7 +74,8 @@ FileBaseName = [dataSet FOVnr ]; % names results folder
 FileNameZ = [dataSet FOVnr '_FtsZ.tif' ]; % FtsZ channel, comment out for single color analysis
 PathNameResults = [PathName 'Results\' FileBaseName];
 
-%% Do the segmentation of the SIM data and measure some quantities(waist diameter, contour, etc)
+%% measureShapeDynamics
+% Do the segmentation of the SIM data and measure some quantities (waist diameter, contour, etc)
 if ~exist('FileNameZ','var')
     [imageStack,  num_frames, cellInfo, divededVarEachFrm] = measureShapeDynamics(FileName, PathName, PathNameResults); % Single color
 else
@@ -88,12 +89,14 @@ end
 save([PathNameResults '\cellInfoWithC0.mat'], 'cellInfo')
 save([PathNameResults '\cellDivVarWithC0.mat'], 'divededVarEachFrm')
 
-%% Plot diameter vs time, length vs time etc and do the fit
+%% analyzeShapeDynamics
+% Plot diameter vs time, length vs time, perform fits, determine
+% constriction onset time, etc.
 diamThresh=90; smthThresh=0.92;
 [twMatrix, tlMatrix, Tvar, Lvar, BIC, p1C0, meanR, twZMat, tZMat, fitResultF, fitResultX, fitResultFz, fitResultXz, tDMatrix] = analyzeShapeDynamics(cellInfo, tInt, T0, pixSize, divededVarEachFrm,PathNameResults, diamThresh,smthThresh);
 ElMat=getElMat(tlMatrix);
 
-%% Save variable (change this)
+%% Save variables
 save([PathNameResults '\twMatrix.mat'], 'twMatrix');
 save([PathNameResults '\tlMatrix.mat'], 'tlMatrix');
 save([PathNameResults '\Tvar.mat'], 'Tvar');
