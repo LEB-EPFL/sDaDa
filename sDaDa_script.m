@@ -112,6 +112,16 @@ save([PathNameResults '\fitResultFz.mat'], 'fitResultFz');
 save([PathNameResults '\fitResultXz.mat'], 'fitResultXz');
 save([PathNameResults '\ElMat.mat'], 'ElMat');
 
+%% Extract and save Dmax for all cells
+DmaxAll=getDmaxAll(cellInfo);
+save([PathNameResults '\DmaxAll.mat'],'DmaxAll')
+tTemp=T0:tInt:T0+(num_frames-1)*tInt;
+Tc=Tvar(:,10);
+for cellIdx=size(DmaxAll,1):-1:1
+    DmaxAtTcAll(cellIdx,1)=nanmean(DmaxAll(cellIdx,Tc(cellIdx,1)-tInt <= tTemp & tTemp <= Tc(cellIdx,1)+tInt),2);
+end
+save([PathNameResults '\DmaxAtTcAll.mat'],'DmaxAtTcAll')
+
 %% Extracting Z intensity and width profiles, calculating SAV and saving all of these.
 ZintAll=getZintAll(cellInfo);
 diamFWHMAll=getDiamFWHMAll(cellInfo);
